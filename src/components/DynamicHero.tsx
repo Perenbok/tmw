@@ -14,6 +14,7 @@ const SLIDES = [
     lines: ["WELD.", "FABRICATE.", "DELIVER."],
     subcopy:
       "THE MOST RELIABLE MOBILE WELDING AND FABRICATION SERVICE IN TAMPA BAY. UPFRONT PRICING & NO HIDDEN FEES.",
+    video: "/tmw/videos/01_welding.mp4",
     image: "/tmw/images/01_Welder_working_on_steel.jpg",
     spec1: "20+ YEARS EXP",
     spec2: "MIG / TIG / STICK",
@@ -165,11 +166,7 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
                 <button
                   key={item.num}
                   onClick={() => selectSlide(idx)}
-                  className={`px-3 py-2 border border-carbon cursor-pointer transition-colors ${
-                    current === idx
-                      ? "bg-carbon text-acid font-bold"
-                      : "bg-transparent text-carbon hover:bg-acid"
-                  }`}
+                  className={}
                 >
                   {item.num}
                 </button>
@@ -179,31 +176,42 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
         </div>
 
         <div className="lg:col-span-6 relative min-h-[480px] lg:min-h-full bg-carbon overflow-hidden select-none">
-          <img
-            src={slide.image}
-            alt={slide.phase}
-            className={`w-full h-full object-cover grayscale contrast-125 brightness-90 transition-all duration-500 ${
-              isFading ? "opacity-40 scale-110" : "opacity-100 scale-105"
-            }`}
-          />
+          {slide.video ? (
+            <video
+              key={slide.video}
+              src={slide.video}
+              poster={slide.image}
+              autoPlay
+              loop
+              muted
+              playsInline
+              className={}
+            />
+          ) : (
+            <img
+              src={slide.image}
+              alt={slide.phase}
+              className={}
+            />
+          )}
 
           <div className="absolute inset-0 bg-gradient-to-t from-carbon/90 via-carbon/20 to-carbon/40 pointer-events-none" />
 
           <div
             style={{
-              transform: `translate(${mouseOffset.x * 28}px, ${mouseOffset.y * 28}px)`,
+              transform: ,
             }}
             className="absolute top-12 left-8 w-44 h-44 bg-acid/55 mix-blend-screen pointer-events-none transition-transform duration-150 ease-out"
           />
           <div
             style={{
-              transform: `translate(${mouseOffset.x * -36}px, ${mouseOffset.y * 20}px)`,
+              transform: ,
             }}
             className="absolute top-36 left-44 w-56 h-36 bg-acid/45 mix-blend-lighten pointer-events-none transition-transform duration-200 ease-out"
           />
           <div
             style={{
-              transform: `translate(${mouseOffset.x * 20}px, ${mouseOffset.y * -24}px)`,
+              transform: ,
             }}
             className="absolute bottom-28 right-12 w-36 h-48 border-2 border-acid/80 bg-acid/20 pointer-events-none transition-transform duration-150 ease-out"
           />
@@ -222,7 +230,7 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
 
           <div className="absolute top-0 left-0 w-full h-1 bg-white/15">
             <div
-              style={{ width: `${progressPct}%` }}
+              style={{ width:  }}
               className="h-full bg-acid transition-all duration-100"
             />
           </div>

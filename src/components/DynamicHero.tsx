@@ -185,22 +185,6 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
                 <span className="pl-3 font-bold">(813) 755-7411</span>
               </a>
             </div>
-
-            <div className="flex items-center gap-1.5 font-mono text-xs">
-              {SLIDES.map((item, idx) => (
-                <button
-                  key={item.num}
-                  onClick={() => selectSlide(idx)}
-                  className={`px-3 py-2 border border-carbon cursor-pointer transition-colors ${
-                    current === idx
-                      ? "bg-carbon text-acid font-bold"
-                      : "bg-transparent text-carbon hover:bg-acid"
-                  }`}
-                >
-                  {item.num}
-                </button>
-              ))}
-            </div>
           </div>
         </div>
 

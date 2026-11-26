@@ -147,48 +147,47 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
   return (
     <section
       onMouseMove={handleMouseMove}
-      className="relative w-full border-b border-carbon overflow-hidden"
+      className="relative w-full border-b border-carbon overflow-x-clip"
     >
-      <div className="w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]">
-        <div className="lg:col-span-6 p-5 sm:p-8 xl:p-10 flex flex-col justify-between gap-5 border-b lg:border-b-0 lg:border-r border-carbon relative min-w-0">
-          <div className="my-auto py-4 relative min-w-0">
-            <div className="inline-block font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] border border-carbon px-2.5 py-1 mb-3 bg-concrete">
+      <div className="w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 lg:min-h-[calc(100dvh-5rem)]">
+        <div className="lg:col-span-6 p-4 sm:p-8 xl:p-10 flex flex-col justify-between gap-6 border-b lg:border-b-0 lg:border-r border-carbon relative min-w-0">
+          <div className="my-auto py-2 sm:py-4 relative min-w-0">
+            <div className="inline-block font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.18em] border border-carbon px-2.5 py-1 mb-3 bg-concrete">
               TAMPA MOBILE WELDING LLC • 20+ YEARS EXP
             </div>
-            <h1 className="font-display text-[52px] sm:text-[72px] lg:text-[84px] xl:text-[98px] leading-[0.88] tracking-tight uppercase text-carbon break-words">
+            <h1 className="font-display text-[44px] min-[390px]:text-[52px] sm:text-[72px] lg:text-[84px] xl:text-[98px] leading-[0.88] tracking-tight uppercase text-carbon break-words">
               {slide.lines.map((line, i) => (
                 <span key={i} className="block">
                   {line}
                 </span>
               ))}
             </h1>
-            <p className="font-mono text-xs sm:text-[13px] uppercase tracking-wider text-carbon/85 mt-4 max-w-lg leading-relaxed">
+            <p className="font-mono text-[11px] sm:text-[13px] uppercase tracking-wider text-carbon/85 mt-4 max-w-lg leading-relaxed">
               {slide.subcopy}
             </p>
           </div>
 
-          <div className="pt-4 border-t border-carbon/20 flex flex-wrap items-center justify-between gap-4">
-            <div className="flex flex-wrap items-center gap-4">
-              <button
-                onClick={() => onOpenQuote()}
-                className="bg-acid hover:bg-carbon hover:text-acid text-carbon border border-carbon font-mono text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-3.5 transition-all duration-200 flex items-center gap-3 cursor-pointer shadow-[4px_4px_0px_#141414] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
-              >
-                <span>GET A QUOTE</span>
-                <span>→</span>
-              </button>
-              <a
-                href="tel:+18137557411"
-                className="font-mono text-[11px] uppercase leading-tight hover:underline"
-              >
-                <span className="text-carbon/60">→</span> SAME-DAY EMERGENCY
-                <br />
-                <span className="pl-3 font-bold">(813) 755-7411</span>
-              </a>
-            </div>
+          <div className="pt-4 border-t border-carbon/20 flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4">
+            <button
+              onClick={() => onOpenQuote()}
+              className="w-full sm:w-auto justify-center bg-acid hover:bg-carbon hover:text-acid text-carbon border border-carbon font-mono text-xs sm:text-sm font-bold uppercase tracking-wider px-5 py-3.5 transition-all duration-200 flex items-center gap-3 cursor-pointer shadow-[4px_4px_0px_#141414] hover:shadow-none hover:translate-x-[2px] hover:translate-y-[2px]"
+            >
+              <span>GET A QUOTE</span>
+              <span>→</span>
+            </button>
+            <a
+              href="tel:+18137557411"
+              className="font-mono text-[11px] uppercase leading-snug hover:underline flex sm:block items-center justify-between border sm:border-0 border-carbon/20 px-3 py-2.5 sm:p-0"
+            >
+              <span className="text-carbon/60">
+                <span className="hidden sm:inline">→ </span>SAME-DAY EMERGENCY
+              </span>
+              <span className="sm:pl-3 font-bold">(813) 755-7411</span>
+            </a>
           </div>
         </div>
 
-        <div className="lg:col-span-6 relative w-full h-[55dvh] min-h-[360px] lg:h-auto lg:min-h-[calc(100dvh-5rem)] bg-carbon overflow-hidden select-none min-w-0">
+        <div className="lg:col-span-6 relative w-full h-[380px] min-[420px]:h-[430px] sm:h-[520px] lg:h-auto lg:min-h-[calc(100dvh-5rem)] bg-carbon overflow-hidden select-none min-w-0">
           {slide.video ? (
             <video
               ref={videoRef}
@@ -218,19 +217,19 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
             style={{
               transform: `translate3d(${mouseOffset.x * 24}px, ${mouseOffset.y * 24}px, 0)`,
             }}
-            className="hidden sm:block absolute top-12 left-8 w-36 lg:w-44 h-36 lg:h-44 bg-acid/55 mix-blend-screen pointer-events-none transition-transform duration-150 ease-out"
+            className="hidden md:block absolute top-12 left-8 w-36 lg:w-44 h-36 lg:h-44 bg-acid/55 mix-blend-screen pointer-events-none transition-transform duration-150 ease-out"
           />
           <div
             style={{
               transform: `translate3d(${mouseOffset.x * -30}px, ${mouseOffset.y * 18}px, 0)`,
             }}
-            className="hidden sm:block absolute top-32 left-36 lg:left-44 w-44 lg:w-56 h-28 lg:h-36 bg-acid/45 mix-blend-lighten pointer-events-none transition-transform duration-200 ease-out"
+            className="hidden md:block absolute top-32 left-36 lg:left-44 w-44 lg:w-56 h-28 lg:h-36 bg-acid/45 mix-blend-lighten pointer-events-none transition-transform duration-200 ease-out"
           />
           <div
             style={{
               transform: `translate3d(${mouseOffset.x * 18}px, ${mouseOffset.y * -20}px, 0)`,
             }}
-            className="hidden sm:block absolute bottom-24 right-8 lg:right-12 w-28 lg:w-36 h-40 lg:h-48 border-2 border-acid/80 bg-acid/20 pointer-events-none transition-transform duration-150 ease-out"
+            className="hidden md:block absolute bottom-24 right-8 lg:right-12 w-28 lg:w-36 h-40 lg:h-48 border-2 border-acid/80 bg-acid/20 pointer-events-none transition-transform duration-150 ease-out"
           />
 
           <div className="absolute inset-0 pointer-events-none">
@@ -244,13 +243,13 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
               type="button"
               onClick={togglePause}
               aria-label={isPaused ? "Play video" : "Pause video"}
-              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-carbon/50 hover:bg-acid/50 text-white hover:text-carbon border border-white/40 hover:border-carbon px-6 py-4 font-mono text-base sm:text-lg font-bold uppercase tracking-widest flex items-center gap-3 cursor-pointer backdrop-blur-xs transition-all duration-200"
+              className="absolute top-[42%] sm:top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-carbon/50 hover:bg-acid/50 text-white hover:text-carbon border border-white/40 hover:border-carbon px-4 py-2.5 sm:px-6 sm:py-4 font-mono text-xs sm:text-lg font-bold uppercase tracking-widest flex items-center gap-2 sm:gap-3 cursor-pointer backdrop-blur-xs transition-all duration-200"
             >
               <span>{isPaused ? "▶ PLAY" : "❚❚ PAUSE"}</span>
             </button>
           )}
 
-          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-carbon/90 border border-white/25 px-3.5 py-2.5 sm:px-4 sm:py-3 font-mono text-[11px] sm:text-xs text-white text-right backdrop-blur-xs z-10">
+          <div className="absolute top-3 right-3 sm:top-6 sm:right-6 bg-carbon/90 border border-white/25 px-2.5 py-2 sm:px-4 sm:py-3 font-mono text-[10px] sm:text-xs text-white text-right backdrop-blur-xs z-10">
             <div className="text-acid font-bold">{slide.spec1}</div>
             <div>{slide.spec2}</div>
             <div className="text-white/70">{slide.spec3}</div>
@@ -263,8 +262,8 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
             />
           </div>
 
-          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex items-end justify-between gap-3 z-10">
-            <div className="font-mono text-[11px] text-white/80 bg-carbon/85 border border-white/20 px-3 py-2 hidden sm:block">
+          <div className="absolute bottom-3 left-3 right-3 sm:bottom-6 sm:left-6 sm:right-6 flex items-end justify-between gap-2 sm:gap-3 z-10">
+            <div className="font-mono text-[10px] sm:text-[11px] text-white/80 bg-carbon/85 border border-white/20 px-2.5 py-1.5 sm:px-3 sm:py-2 hidden sm:block">
               ACTIVE PHASE:{" "}
               <span className="text-acid font-bold">{slide.phase}</span>
               {isPaused && (
@@ -275,19 +274,19 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
             <div
               onClick={nextSlide}
               title="Click to cycle phase"
-              className="ml-auto flex items-center gap-3 sm:gap-4 bg-carbon/90 border border-white/20 px-4 py-2.5 sm:px-5 sm:py-3 cursor-pointer hover:border-acid transition-colors"
+              className="ml-auto flex items-center gap-2.5 sm:gap-4 bg-carbon/90 border border-white/20 px-3 py-2 sm:px-5 sm:py-3 cursor-pointer hover:border-acid transition-colors"
             >
-              <span className="font-display text-5xl sm:text-7xl leading-none outline-num">
+              <span className="font-display text-4xl sm:text-7xl leading-none outline-num">
                 {slide.num}
               </span>
-              <div className="font-mono text-[10px] sm:text-xs uppercase leading-snug text-white tracking-wider">
+              <div className="font-mono text-[9px] sm:text-xs uppercase leading-tight sm:leading-snug text-white tracking-wider">
                 {slide.pillars.map((p, i) => (
                   <div key={p} className={i === 0 ? "text-acid font-bold" : ""}>
                     {p}
                   </div>
                 ))}
               </div>
-              <span className="font-mono text-acid text-lg ml-1 sm:ml-2">↻</span>
+              <span className="font-mono text-acid text-sm sm:text-lg ml-0.5 sm:ml-2">↻</span>
             </div>
           </div>
         </div>

@@ -76,7 +76,7 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
   const [isFading, setIsFading] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
-  const SLIDE_DURATION = 6500;
+  const SLIDE_DURATION = 4000;
 
   const selectSlide = (idx: number) => {
     if (idx === current) return;

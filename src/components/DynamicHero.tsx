@@ -74,6 +74,7 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
   const [progress, setProgress] = useState(0);
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
   const [isFading, setIsFading] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
   const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const SLIDE_DURATION = 4000;
@@ -85,14 +86,31 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
     setTimeout(() => {
       setCurrent(idx);
       setIsFading(false);
-    }, 180);
+    }, 160);
   };
 
   const nextSlide = () => {
     selectSlide((current + 1) % SLIDES.length);
   };
 
+  const togglePause = () => {
+    setIsPaused((prev) => {
+      const next = !prev;
+      const el = videoRef.current;
+      if (el) {
+        if (next) {
+          el.pause();
+        } else {
+          const p = el.play();
+          if (p && typeof p.catch === "function") p.catch(() => {});
+        }
+      }
+      return next;
+    });
+  };
+
   useEffect(() => {
+    if (isPaused) return;
     const timer = setInterval(() => {
       setProgress((prev) => {
         if (prev + 100 >= SLIDE_DURATION) {
@@ -100,25 +118,29 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
           setTimeout(() => {
             setCurrent((c) => (c + 1) % SLIDES.length);
             setIsFading(false);
-          }, 180);
+          }, 160);
           return 0;
         }
         return prev + 100;
       });
     }, 100);
     return () => clearInterval(timer);
-  }, []);
+  }, [isPaused]);
 
   useEffect(() => {
     const el = videoRef.current;
-    if (!el || !SLIDES[current]?.video) return;
+    const activeVideo = SLIDES[current]?.video;
+    if (!el || !activeVideo) return;
+
     el.muted = true;
-    el.load();
-    const playPromise = el.play();
-    if (playPromise && typeof playPromise.catch === "function") {
-      playPromise.catch(() => {});
+    if (el.getAttribute("src") !== activeVideo) {
+      el.setAttribute("src", activeVideo);
     }
-  }, [current]);
+    if (!isPaused) {
+      const p = el.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    }
+  }, [current, isPaused]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -212,24 +234,22 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
           {slide.video ? (
             <video
               ref={videoRef}
-              key={slide.video}
-              src={slide.video}
               poster={slide.image}
               preload="auto"
               autoPlay
               loop
               muted
               playsInline
-              className={`absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-90 transition-all duration-500 ${
-                isFading ? "opacity-40 scale-105" : "opacity-100 scale-100"
+              className={`absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-90 transition-opacity duration-300 will-change-transform ${
+                isFading ? "opacity-50" : "opacity-100"
               }`}
             />
           ) : (
             <img
               src={slide.image}
               alt={slide.phase}
-              className={`absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-90 transition-all duration-500 ${
-                isFading ? "opacity-40 scale-105" : "opacity-100 scale-100"
+              className={`absolute inset-0 w-full h-full object-cover grayscale contrast-125 brightness-90 transition-opacity duration-300 ${
+                isFading ? "opacity-50" : "opacity-100"
               }`}
             />
           )}
@@ -238,19 +258,19 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
 
           <div
             style={{
-              transform: `translate(${mouseOffset.x * 24}px, ${mouseOffset.y * 24}px)`,
+              transform: `translate3d(${mouseOffset.x * 24}px, ${mouseOffset.y * 24}px, 0)`,
             }}
             className="hidden sm:block absolute top-12 left-8 w-36 lg:w-44 h-36 lg:h-44 bg-acid/55 mix-blend-screen pointer-events-none transition-transform duration-150 ease-out"
           />
           <div
             style={{
-              transform: `translate(${mouseOffset.x * -30}px, ${mouseOffset.y * 18}px)`,
+              transform: `translate3d(${mouseOffset.x * -30}px, ${mouseOffset.y * 18}px, 0)`,
             }}
             className="hidden sm:block absolute top-32 left-36 lg:left-44 w-44 lg:w-56 h-28 lg:h-36 bg-acid/45 mix-blend-lighten pointer-events-none transition-transform duration-200 ease-out"
           />
           <div
             style={{
-              transform: `translate(${mouseOffset.x * 18}px, ${mouseOffset.y * -20}px)`,
+              transform: `translate3d(${mouseOffset.x * 18}px, ${mouseOffset.y * -20}px, 0)`,
             }}
             className="hidden sm:block absolute bottom-24 right-8 lg:right-12 w-28 lg:w-36 h-40 lg:h-48 border-2 border-acid/80 bg-acid/20 pointer-events-none transition-transform duration-150 ease-out"
           />
@@ -261,23 +281,38 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
             <div className="h-full w-px bg-white/15 absolute left-1/2" />
           </div>
 
-          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-carbon/90 border border-white/25 px-3.5 py-2.5 sm:px-4 sm:py-3 font-mono text-[11px] sm:text-xs text-white text-right backdrop-blur-xs">
-            <div className="text-acid font-bold">{slide.spec1}</div>
-            <div>{slide.spec2}</div>
-            <div className="text-white/70">{slide.spec3}</div>
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col items-end gap-2.5 z-10">
+            <div className="bg-carbon/90 border border-white/25 px-3.5 py-2.5 sm:px-4 sm:py-3 font-mono text-[11px] sm:text-xs text-white text-right backdrop-blur-xs">
+              <div className="text-acid font-bold">{slide.spec1}</div>
+              <div>{slide.spec2}</div>
+              <div className="text-white/70">{slide.spec3}</div>
+            </div>
+
+            {slide.video && (
+              <button
+                type="button"
+                onClick={togglePause}
+                className="bg-carbon/95 hover:bg-acid hover:text-carbon text-acid border border-white/30 hover:border-carbon px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-colors"
+              >
+                <span>{isPaused ? "▶ PLAY" : "❚❚ PAUSE"}</span>
+              </button>
+            )}
           </div>
 
-          <div className="absolute top-0 left-0 w-full h-1 bg-white/15">
+          <div className="absolute top-0 left-0 w-full h-1 bg-white/15 z-10">
             <div
               style={{ width: `${progressPct}%` }}
               className="h-full bg-acid transition-all duration-100"
             />
           </div>
 
-          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex items-end justify-between gap-3">
+          <div className="absolute bottom-4 left-4 right-4 sm:bottom-6 sm:left-6 sm:right-6 flex items-end justify-between gap-3 z-10">
             <div className="font-mono text-[11px] text-white/80 bg-carbon/85 border border-white/20 px-3 py-2 hidden sm:block">
               ACTIVE PHASE:{" "}
               <span className="text-acid font-bold">{slide.phase}</span>
+              {isPaused && (
+                <span className="ml-2 text-acid/90">• PAUSED</span>
+              )}
             </div>
 
             <div

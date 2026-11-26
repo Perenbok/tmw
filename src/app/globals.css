@@ -1,0 +1,49 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  background-color: #DCDCDC;
+  color: #141414;
+  background-image:
+    radial-gradient(rgba(20, 20, 20, 0.06) 1px, transparent 0),
+    linear-gradient(to right, rgba(20, 20, 20, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(20, 20, 20, 0.04) 1px, transparent 1px);
+  background-size: 24px 24px, 120px 120px, 120px 120px;
+}
+
+.outline-num {
+  -webkit-text-stroke: 2px #C4F000;
+  color: transparent;
+}
+
+.grid-cross {
+  position: relative;
+}
+.grid-cross::before,
+.grid-cross::after {
+  content: "";
+  position: absolute;
+  background-color: #141414;
+  z-index: 20;
+}
+.grid-cross::before {
+  width: 13px;
+  height: 1px;
+  top: -0.5px;
+  left: -6.5px;
+}
+.grid-cross::after {
+  width: 1px;
+  height: 13px;
+  top: -6.5px;
+  left: -0.5px;
+}
+
+@keyframes pulseDot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.25; }
+}
+.live-dot {
+  animation: pulseDot 1.6s infinite;
+}

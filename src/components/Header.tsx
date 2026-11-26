@@ -1,5 +1,7 @@
 "use client";
 
+import Link from "next/link";
+
 interface HeaderProps {
   onOpenQuote: (service?: string) => void;
 }
@@ -8,7 +10,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
   return (
     <header className="sticky top-0 z-40 bg-concrete/95 backdrop-blur-sm border-b border-carbon">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-        <a href="#" className="flex items-center gap-3.5 group">
+        <Link href="/" className="flex items-center gap-3.5 group">
           <div className="w-11 h-11 relative flex items-center justify-center">
             <svg viewBox="0 0 44 44" className="w-full h-full">
               <rect x="2" y="2" width="18" height="18" fill="#C4F000" stroke="#141414" strokeWidth="1.5" />
@@ -26,13 +28,13 @@ export default function Header({ onOpenQuote }: HeaderProps) {
               STRUCTURAL • FABRICATION • PLASMA CUTTING
             </div>
           </div>
-        </a>
+        </Link>
 
         <nav className="hidden lg:flex items-center gap-8 font-mono text-xs tracking-widest uppercase">
-          <a href="#services" className="hover:bg-acid px-2 py-1 transition-colors">Services</a>
-          <a href="#projects" className="hover:bg-acid px-2 py-1 transition-colors">Our Work</a>
-          <a href="#reviews" className="hover:bg-acid px-2 py-1 transition-colors">Reviews</a>
-          <a href="#contact" className="hover:bg-acid px-2 py-1 transition-colors">Contact</a>
+          <Link href="/services" className="hover:bg-acid px-2 py-1 transition-colors">Services</Link>
+          <Link href="/#projects" className="hover:bg-acid px-2 py-1 transition-colors">Our Work</Link>
+          <Link href="/#reviews" className="hover:bg-acid px-2 py-1 transition-colors">Reviews</Link>
+          <Link href="/#contact" className="hover:bg-acid px-2 py-1 transition-colors">Contact</Link>
         </nav>
 
         <div className="flex items-center gap-3">

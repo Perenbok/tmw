@@ -158,7 +158,7 @@ export default function Home() {
 
         <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-6 flex flex-col sm:flex-row items-center justify-between gap-4 font-mono text-[11px] text-white/60 uppercase">
           <div>© {new Date().getFullYear()} TAMPA MOBILE WELDING LLC. ALL RIGHTS RESERVED.</div>
-          <div>TAMPA • ODESSA • BRANDON • CLEARWATER • ST. PETERSBURG</div>
+          <div>TAMPA • WESLEY CHAPEL • RIVERVIEW • BRANDON • CLEARWATER • ST. PETERSBURG</div>
         </div>
       </footer>
 

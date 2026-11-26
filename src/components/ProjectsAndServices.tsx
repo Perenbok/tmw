@@ -90,7 +90,7 @@ export default function ProjectsAndServices({ onOpenQuote }: ProjectsAndServices
               </h2>
             </div>
             <p className="font-mono text-xs uppercase text-carbon/80 max-w-md leading-relaxed">
-              SELF-CONTAINED MOBILE WELDING UNIT SERVING TAMPA, ODESSA, BRANDON & CLEARWATER. UPFRONT QUOTES WITH ZERO HIDDEN FEES.
+              SELF-CONTAINED MOBILE WELDING UNIT SERVING TAMPA, WESLEY CHAPEL, RIVERVIEW, BRANDON & CLEARWATER. UPFRONT QUOTES WITH ZERO HIDDEN FEES.
             </p>
           </div>
 

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 interface DynamicHeroProps {
   onOpenQuote: (service?: string) => void;
@@ -59,7 +59,7 @@ const SLIDES: SlideItem[] = [
     lines: ["CUT.", "REPAIR.", "RESTORE."],
     subcopy:
       "PRECISE PLASMA CUTTING UP TO 1 INCH THICKNESS & SAME-DAY EMERGENCY WELDING RESPONSE ACROSS TAMPA.",
-    video: "",
+    video: "/tmw/videos/03_cut.mp4",
     image: "/tmw/images/03_Specialist_operating_plasma_cutt.jpg",
     spec1: 'UP TO 1" PLASMA',
     spec2: "SAME-DAY SERVICE",
@@ -74,6 +74,7 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
   const [progress, setProgress] = useState(0);
   const [mouseOffset, setMouseOffset] = useState({ x: 0, y: 0 });
   const [isFading, setIsFading] = useState(false);
+  const videoRef = useRef<HTMLVideoElement | null>(null);
 
   const SLIDE_DURATION = 6500;
 
@@ -107,6 +108,17 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
     }, 100);
     return () => clearInterval(timer);
   }, []);
+
+  useEffect(() => {
+    const el = videoRef.current;
+    if (!el || !SLIDES[current]?.video) return;
+    el.muted = true;
+    el.load();
+    const playPromise = el.play();
+    if (playPromise && typeof playPromise.catch === "function") {
+      playPromise.catch(() => {});
+    }
+  }, [current]);
 
   const handleMouseMove = (e: React.MouseEvent<HTMLElement>) => {
     const rect = e.currentTarget.getBoundingClientRect();
@@ -199,9 +211,11 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
         <div className="lg:col-span-6 relative min-h-[480px] lg:min-h-full bg-carbon overflow-hidden select-none">
           {slide.video ? (
             <video
+              ref={videoRef}
               key={slide.video}
               src={slide.video}
               poster={slide.image}
+              preload="auto"
               autoPlay
               loop
               muted

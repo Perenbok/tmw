@@ -54,13 +54,13 @@ export default function ServicesPage() {
         <section className="border-b border-carbon bg-concrete">
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-14 sm:py-20">
             <div className="font-mono text-xs uppercase bg-acid inline-block px-2.5 py-1 font-bold border border-carbon mb-4">
-              MOBILE WELDING & FABRICATION • TAMPA BAY, FL
+              CAPABILITIES • MOBILE RIG EQUIPPED
             </div>
             <h1 className="font-display text-6xl sm:text-8xl uppercase tracking-tight leading-[0.9] mb-6">
-              ALL WELDING SERVICES
+              CORE WELDING SERVICES
             </h1>
             <p className="font-mono text-xs sm:text-sm uppercase text-carbon/85 max-w-2xl leading-relaxed">
-              FULL-SERVICE ON-SITE WELDING, STRUCTURAL STEEL, CUSTOM FABRICATION, PLASMA CUTTING UP TO 1 INCH, AND SAME-DAY EMERGENCY DISPATCH BY TAMPA MOBILE WELDING LLC.
+              SELF-CONTAINED MOBILE WELDING UNIT SERVING TAMPA, WESLEY CHAPEL, RIVERVIEW, BRANDON & CLEARWATER. UPFRONT QUOTES WITH ZERO HIDDEN FEES.
             </p>
           </div>
         </section>
@@ -74,17 +74,11 @@ export default function ServicesPage() {
               >
                 <div>
                   <div className="flex items-center justify-between font-mono text-xs mb-4">
-                    <span className="bg-carbon text-acid px-2 py-0.5 font-bold">
-                      {srv.code}
-                    </span>
+                    <span className="bg-carbon text-acid px-2 py-0.5 font-bold">{srv.code}</span>
                     <span className="text-carbon/70 uppercase">{srv.subtitle}</span>
                   </div>
-                  <h2 className="font-display text-3xl sm:text-4xl uppercase mb-3">
-                    {srv.title}
-                  </h2>
-                  <p className="font-mono text-xs sm:text-sm text-carbon/80 leading-relaxed mb-6">
-                    {srv.desc}
-                  </p>
+                  <h2 className="font-display text-3xl sm:text-4xl uppercase mb-3">{srv.title}</h2>
+                  <p className="font-mono text-xs sm:text-sm text-carbon/80 leading-relaxed mb-6">{srv.desc}</p>
                   <ul className="space-y-2 font-mono text-xs border-t border-carbon/20 pt-4 mb-6">
                     {srv.items.map((item) => (
                       <li key={item} className="flex items-center gap-2">
@@ -118,9 +112,7 @@ export default function ServicesPage() {
                 <div className="font-mono text-[11px] uppercase bg-acid px-2 py-0.5 inline-block font-bold border border-carbon">
                   TAMPA MOBILE WELDING LLC
                 </div>
-                <h3 className="font-display text-3xl uppercase mt-1">
-                  REQUEST ON-SITE QUOTE
-                </h3>
+                <h3 className="font-display text-3xl uppercase mt-1">REQUEST ON-SITE QUOTE</h3>
               </div>
               <button
                 onClick={() => setQuoteOpen(false)}
@@ -129,7 +121,6 @@ export default function ServicesPage() {
                 ESC ✕
               </button>
             </div>
-
             {submitted ? (
               <div className="py-8 text-center font-mono">
                 <div className="text-2xl font-bold mb-2">REQUEST RECEIVED</div>
@@ -166,30 +157,15 @@ export default function ServicesPage() {
                 </div>
                 <div>
                   <label className="block font-bold uppercase mb-1">YOUR NAME / COMPANY</label>
-                  <input
-                    required
-                    type="text"
-                    placeholder="E.G. JOHN DOE"
-                    className="w-full border border-carbon bg-white p-3"
-                  />
+                  <input required type="text" placeholder="E.G. JOHN DOE" className="w-full border border-carbon bg-white p-3" />
                 </div>
                 <div>
                   <label className="block font-bold uppercase mb-1">PHONE NUMBER</label>
-                  <input
-                    required
-                    type="tel"
-                    placeholder="(813) 000-0000"
-                    className="w-full border border-carbon bg-white p-3"
-                  />
+                  <input required type="tel" placeholder="(813) 000-0000" className="w-full border border-carbon bg-white p-3" />
                 </div>
                 <div>
                   <label className="block font-bold uppercase mb-1">PROJECT DETAILS & ZIP CODE</label>
-                  <textarea
-                    required
-                    rows={3}
-                    placeholder="DESCRIBE METAL TYPE, THICKNESS, OR REPAIR NEEDED..."
-                    className="w-full border border-carbon bg-white p-3"
-                  />
+                  <textarea required rows={3} placeholder="DESCRIBE METAL TYPE, THICKNESS, OR REPAIR NEEDED..." className="w-full border border-carbon bg-white p-3" />
                 </div>
                 <button
                   type="submit"

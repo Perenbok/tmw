@@ -1,12 +1,22 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 
 interface HeaderProps {
   onOpenQuote: (service?: string) => void;
 }
 
+const NAV_ITEMS = [
+  { label: "Services", href: "/services" },
+  { label: "Our Work", href: "/our-work" },
+  { label: "Reviews", href: "/reviews" },
+  { label: "Contact", href: "/contact" },
+];
+
 export default function Header({ onOpenQuote }: HeaderProps) {
+  const pathname = usePathname();
+
   return (
     <header className="sticky top-0 z-40 bg-concrete/95 backdrop-blur-sm border-b border-carbon">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
@@ -30,11 +40,23 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-8 font-mono text-xs tracking-widest uppercase">
-          <Link href="/services" className="hover:bg-acid px-2 py-1 transition-colors">Services</Link>
-          <Link href="/#projects" className="hover:bg-acid px-2 py-1 transition-colors">Our Work</Link>
-          <Link href="/#reviews" className="hover:bg-acid px-2 py-1 transition-colors">Reviews</Link>
-          <Link href="/#contact" className="hover:bg-acid px-2 py-1 transition-colors">Contact</Link>
+        <nav className="hidden lg:flex items-center gap-6 font-mono text-xs tracking-widest uppercase">
+          {NAV_ITEMS.map((item) => {
+            const isActive = pathname === item.href;
+            return (
+              <Link
+                key={item.href}
+                href={item.href}
+                className={`px-2.5 py-1 transition-colors border ${
+                  isActive
+                    ? "bg-acid text-carbon border-carbon font-bold"
+                    : "border-transparent hover:bg-acid hover:border-carbon"
+                }`}
+              >
+                {item.label}
+              </Link>
+            );
+          })}
         </nav>
 
         <div className="flex items-center gap-3">

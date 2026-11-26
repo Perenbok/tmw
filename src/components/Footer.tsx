@@ -6,7 +6,7 @@ interface FooterProps {
 
 export default function Footer({ onOpenQuote }: FooterProps) {
   return (
-    <footer id="contact" className="bg-carbon text-white">
+    <footer className="bg-carbon text-white">
       <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-16 sm:py-20 grid grid-cols-1 lg:grid-cols-12 gap-10 border-b border-white/20">
         <div className="lg:col-span-6">
           <div className="font-mono text-xs uppercase text-acid mb-3">

@@ -13,7 +13,7 @@ body {
 }
 
 .outline-num {
-  -webkit-text-stroke: 2px #FF6A00;
+  -webkit-text-stroke: 2px #eea139;
   color: transparent;
   color: transparent;
 }
@@ -50,6 +50,6 @@ body {
 }
 
 @theme {
-  --color-acid: #FF6A00;
-  --color-acidHover: #FF8524;
+  --color-acid: #eea139;
+  --color-acidHover: #f4b458;
 }

@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect, useState } from "react";
 
 interface HeaderProps {
   onOpenQuote: (service?: string) => void;
@@ -16,6 +17,11 @@ const NAV_ITEMS = [
 
 export default function Header({ onOpenQuote }: HeaderProps) {
   const pathname = usePathname();
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  useEffect(() => {
+    setMenuOpen(false);
+  }, [pathname]);
 
   return (
     <header className="sticky top-0 z-40 bg-concrete/95 backdrop-blur-sm border-b border-carbon">
@@ -55,23 +61,90 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           })}
         </nav>
 
-        <div className="flex items-center gap-2 sm:gap-3 shrink-0">
+        <div className="hidden lg:flex items-center gap-3 shrink-0">
           <a
             href="tel:+18137557411"
-            className="hidden md:flex items-center font-mono text-xs font-bold border border-carbon px-4 py-3 hover:bg-carbon hover:text-acid transition-colors"
+            className="flex items-center font-mono text-xs font-bold border border-carbon px-4 py-3 hover:bg-carbon hover:text-acid transition-colors"
           >
             (813) 755-7411
           </a>
           <button
             onClick={() => onOpenQuote()}
-            className="bg-acid hover:bg-carbon hover:text-acid text-carbon border border-carbon font-mono text-[10px] sm:text-xs font-bold uppercase tracking-wider px-3 py-2.5 sm:px-5 sm:py-3 transition-colors duration-200 flex items-center gap-1.5 sm:gap-2 cursor-pointer whitespace-nowrap"
+            className="bg-acid hover:bg-carbon hover:text-acid text-carbon border border-carbon font-mono text-xs font-bold uppercase tracking-wider px-5 py-3 transition-colors duration-200 flex items-center gap-2 cursor-pointer"
           >
-            <span>QUOTE</span>
-            <span className="hidden sm:inline">GET A QUOTE</span>
+            <span>GET A QUOTE</span>
             <span>→</span>
           </button>
         </div>
+
+        <button
+          type="button"
+          onClick={() => setMenuOpen((prev) => !prev)}
+          aria-expanded={menuOpen}
+          aria-label={menuOpen ? "Close menu" : "Open menu"}
+          className="lg:hidden w-11 h-11 shrink-0 border border-carbon bg-concrete hover:bg-acid text-carbon flex flex-col items-center justify-center gap-1.5 cursor-pointer transition-colors"
+        >
+          <span
+            className={`w-5 h-0.5 bg-carbon transition-transform duration-200 ${
+              menuOpen ? "translate-y-2 rotate-45" : ""
+            }`}
+          />
+          <span
+            className={`w-5 h-0.5 bg-carbon transition-opacity duration-200 ${
+              menuOpen ? "opacity-0" : "opacity-100"
+            }`}
+          />
+          <span
+            className={`w-5 h-0.5 bg-carbon transition-transform duration-200 ${
+              menuOpen ? "-translate-y-2 -rotate-45" : ""
+            }`}
+          />
+        </button>
       </div>
+
+      {menuOpen && (
+        <div className="lg:hidden border-t border-carbon bg-concrete px-3 py-4 space-y-2 font-mono text-xs uppercase tracking-widest">
+          <nav className="flex flex-col divide-y divide-carbon/15 border border-carbon bg-white/40">
+            {NAV_ITEMS.map((item) => {
+              const isActive = pathname === item.href;
+              return (
+                <Link
+                  key={item.href}
+                  href={item.href}
+                  onClick={() => setMenuOpen(false)}
+                  className={`px-4 py-3.5 flex items-center justify-between transition-colors ${
+                    isActive
+                      ? "bg-acid text-carbon font-bold"
+                      : "text-carbon hover:bg-acid"
+                  }`}
+                >
+                  <span>{item.label}</span>
+                  <span>→</span>
+                </Link>
+              );
+            })}
+          </nav>
+
+          <div className="pt-2 grid grid-cols-1 sm:grid-cols-2 gap-2">
+            <a
+              href="tel:+18137557411"
+              className="border border-carbon px-4 py-3 font-bold text-center hover:bg-carbon hover:text-acid transition-colors"
+            >
+              CALL (813) 755-7411
+            </a>
+            <button
+              type="button"
+              onClick={() => {
+                setMenuOpen(false);
+                onOpenQuote();
+              }}
+              className="bg-acid hover:bg-carbon hover:text-acid text-carbon border border-carbon px-4 py-3 font-bold uppercase tracking-wider cursor-pointer transition-colors"
+            >
+              GET A QUOTE →
+            </button>
+          </div>
+        </div>
+      )}
     </header>
   );
 }

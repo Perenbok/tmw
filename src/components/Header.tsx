@@ -19,20 +19,18 @@ export default function Header({ onOpenQuote }: HeaderProps) {
 
   return (
     <header className="sticky top-0 z-40 bg-concrete/95 backdrop-blur-sm border-b border-carbon">
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between">
-        <Link href="/" className="flex items-center gap-3.5 group">
-          <div className="w-11 h-11 relative flex items-center justify-center bg-white border border-carbon overflow-hidden">
-            <img
-              src="/tmw/images/tmw-logo.jpeg"
-              alt="Tampa Mobile Welding"
-              className="w-full h-full object-contain"
-            />
-          </div>
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-8 h-20 flex items-center justify-between gap-4">
+        <Link href="/" className="flex items-center gap-3.5 group shrink-0">
+          <img
+            src="/tmw/images/tmw-logo.jpeg"
+            alt="Tampa Mobile Welding"
+            className="h-11 sm:h-12 w-auto max-w-[64px] object-contain mix-blend-multiply transition-transform duration-200 group-hover:scale-105"
+          />
           <div>
             <div className="font-display text-2xl sm:text-3xl tracking-wide leading-none text-carbon">
               TAMPA MOBILE WELDING
             </div>
-            <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.18em] uppercase text-carbon/80 mt-0.5">
+            <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.18em] uppercase text-carbon/80 mt-0.5 leading-tight">
               STRUCTURAL • FABRICATION • PLASMA CUTTING
             </div>
           </div>
@@ -57,7 +55,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           })}
         </nav>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-3 shrink-0">
           <a
             href="tel:+18137557411"
             className="hidden sm:flex items-center font-mono text-xs font-bold border border-carbon px-4 py-3 hover:bg-carbon hover:text-acid transition-colors"

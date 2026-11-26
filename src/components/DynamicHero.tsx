@@ -281,22 +281,21 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
             <div className="h-full w-px bg-white/15 absolute left-1/2" />
           </div>
 
-          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 flex flex-col items-end gap-2.5 z-10">
-            <div className="bg-carbon/90 border border-white/25 px-3.5 py-2.5 sm:px-4 sm:py-3 font-mono text-[11px] sm:text-xs text-white text-right backdrop-blur-xs">
-              <div className="text-acid font-bold">{slide.spec1}</div>
-              <div>{slide.spec2}</div>
-              <div className="text-white/70">{slide.spec3}</div>
-            </div>
+          {slide.video && (
+            <button
+              type="button"
+              onClick={togglePause}
+              aria-label={isPaused ? "Play video" : "Pause video"}
+              className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 z-20 bg-carbon/50 hover:bg-acid/50 text-white hover:text-carbon border border-white/40 hover:border-carbon px-6 py-4 font-mono text-base sm:text-lg font-bold uppercase tracking-widest flex items-center gap-3 cursor-pointer backdrop-blur-xs transition-all duration-200"
+            >
+              <span>{isPaused ? "▶ PLAY" : "❚❚ PAUSE"}</span>
+            </button>
+          )}
 
-            {slide.video && (
-              <button
-                type="button"
-                onClick={togglePause}
-                className="bg-carbon/95 hover:bg-acid hover:text-carbon text-acid border border-white/30 hover:border-carbon px-3 py-2 font-mono text-[11px] font-bold uppercase tracking-wider flex items-center gap-2 cursor-pointer transition-colors"
-              >
-                <span>{isPaused ? "▶ PLAY" : "❚❚ PAUSE"}</span>
-              </button>
-            )}
+          <div className="absolute top-4 right-4 sm:top-6 sm:right-6 bg-carbon/90 border border-white/25 px-3.5 py-2.5 sm:px-4 sm:py-3 font-mono text-[11px] sm:text-xs text-white text-right backdrop-blur-xs z-10">
+            <div className="text-acid font-bold">{slide.spec1}</div>
+            <div>{slide.spec2}</div>
+            <div className="text-white/70">{slide.spec3}</div>
           </div>
 
           <div className="absolute top-0 left-0 w-full h-1 bg-white/15 z-10">

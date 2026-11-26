@@ -98,7 +98,7 @@ export default function OurWorkPage() {
 
       {quoteOpen && (
         <div className="fixed inset-0 z-50 bg-carbon/80 backdrop-blur-xs flex items-center justify-center p-4">
-          <div className="bg-concrete border-2 border-carbon max-w-lg w-full p-6 sm:p-8 shadow-[8px_8px_0px_#C4F000]">
+          <div className="bg-concrete border-2 border-carbon max-w-lg w-full p-6 sm:p-8 shadow-[8px_8px_0px_#FF6A00]">
             <div className="flex items-center justify-between border-b border-carbon pb-4 mb-4">
               <h3 className="font-display text-3xl uppercase">REQUEST ON-SITE QUOTE</h3>
               <button

@@ -8,8 +8,6 @@ interface DynamicHeroProps {
 
 interface SlideItem {
   num: string;
-  coords: string;
-  loc: string;
   lines: string[];
   subcopy: string;
   video?: string;
@@ -24,8 +22,6 @@ interface SlideItem {
 const SLIDES: SlideItem[] = [
   {
     num: "01",
-    coords: "27.9506° N, 82.4572° W",
-    loc: "9430 LAZY LANE • TAMPA, FL 33614",
     lines: ["WELD.", "FABRICATE.", "DELIVER."],
     subcopy:
       "THE MOST RELIABLE MOBILE WELDING AND FABRICATION SERVICE IN TAMPA BAY. UPFRONT PRICING & NO HIDDEN FEES.",
@@ -39,8 +35,6 @@ const SLIDES: SlideItem[] = [
   },
   {
     num: "02",
-    coords: "28.0395° N, 82.5180° W",
-    loc: "TAMPA BAY COMMERCIAL & INDUSTRIAL",
     lines: ["STEEL.", "STRENGTH.", "PRECISION."],
     subcopy:
       "COMMERCIAL & INDUSTRIAL STRUCTURAL STEEL, CUSTOM GATES, RAILINGS, STAIRS & ARCHITECTURAL METAL.",
@@ -54,8 +48,6 @@ const SLIDES: SlideItem[] = [
   },
   {
     num: "03",
-    coords: "27.9659° N, 82.8001° W",
-    loc: "SAME-DAY EMERGENCY DISPATCH",
     lines: ["CUT.", "REPAIR.", "RESTORE."],
     subcopy:
       "PRECISE PLASMA CUTTING UP TO 1 INCH THICKNESS & SAME-DAY EMERGENCY WELDING RESPONSE ACROSS TAMPA.",
@@ -159,24 +151,6 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
     >
       <div className="w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 min-h-[100dvh] lg:min-h-[calc(100dvh-5rem)]">
         <div className="lg:col-span-6 p-5 sm:p-8 xl:p-10 flex flex-col justify-between gap-5 border-b lg:border-b-0 lg:border-r border-carbon relative min-w-0">
-          <div className="flex items-start justify-between gap-3 border-b border-carbon/20 pb-4">
-            <div className="font-mono text-[11px] sm:text-xs leading-relaxed min-w-0">
-              <div className="flex items-center gap-2 font-bold">
-                <span className="w-2 h-2 bg-carbon inline-block live-dot shrink-0" />
-                <span className="truncate">{slide.coords}</span>
-              </div>
-              <div className="text-carbon/70 mt-0.5 truncate">{slide.loc}</div>
-            </div>
-
-            <div className="font-mono text-[11px] sm:text-xs uppercase text-right leading-relaxed max-w-[215px] shrink-0">
-              DO IT RIGHT THE FIRST TIME
-              <br />
-              INDUSTRIAL • COMMERCIAL
-              <br />
-              <span className="bg-acid px-1 font-bold">CALL (813) 755-7411</span>
-            </div>
-          </div>
-
           <div className="my-auto py-4 relative min-w-0">
             <div className="inline-block font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.18em] border border-carbon px-2.5 py-1 mb-3 bg-concrete">
               TAMPA MOBILE WELDING LLC • 20+ YEARS EXP

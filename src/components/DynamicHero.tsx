@@ -44,7 +44,7 @@ const SLIDES: SlideItem[] = [
     lines: ["STEEL.", "STRENGTH.", "PRECISION."],
     subcopy:
       "COMMERCIAL & INDUSTRIAL STRUCTURAL STEEL, CUSTOM GATES, RAILINGS, STAIRS & ARCHITECTURAL METAL.",
-    video: "",
+    video: "/tmw/videos/02_steel.mp4",
     image: "/tmw/images/02_Welder_working_on_steel_structure.jpg",
     spec1: "AWS CERTIFIED",
     spec2: "STRUCTURAL STEEL",

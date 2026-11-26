@@ -19,16 +19,16 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "GK Construction Group | Florida General Contractor #CGC 1539267",
+  title: "Tampa Mobile Welding LLC | Structural Steel, Fabrication & Plasma Cutting",
   description:
-    "State Certified General Contractor in Odessa & Tampa Bay, FL (License #CGC 1539267). Commercial construction, tenant improvements, structural concrete, and hurricane-rated custom builds.",
+    "Mobile welding and custom metal fabrication in Tampa Bay, FL. Structural steel, gates, railings, plasma cutting up to 1 inch, and same-day emergency repairs. Call (813) 755-7411.",
   keywords: [
-    "General Contractor Odessa FL",
-    "Commercial Construction Tampa Bay",
-    "CGC 1539267",
-    "GK Construction Group",
-    "Tenant Improvements Tampa",
-    "Structural Concrete Florida",
+    "Tampa Mobile Welding",
+    "Mobile Welder Tampa FL",
+    "Structural Steel Welding Tampa",
+    "Custom Metal Fabrication Tampa Bay",
+    "Plasma Cutting Tampa",
+    "Emergency Welding Service Tampa",
   ],
 };
 
@@ -39,24 +39,33 @@ export default function RootLayout({
 }>) {
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "GeneralContractor",
-    name: "GK Construction Group",
-    url: "https://www.gk-construction-group.com",
-    identifier: "FL License #CGC 1539267",
+    "@type": "LocalBusiness",
+    name: "Tampa Mobile Welding LLC",
+    url: "https://perenbok.github.io/tmw/",
+    telephone: "+1-813-755-7411",
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: "9430 Lazy Lane",
+      addressLocality: "Tampa",
+      addressRegion: "FL",
+      postalCode: "33614",
+      addressCountry: "US",
+    },
+    openingHours: "Mo-Sa 07:00-19:00",
     areaServed: [
-      "Odessa, FL",
       "Tampa, FL",
+      "Brandon, FL",
       "Clearwater, FL",
       "St. Petersburg, FL",
       "Hillsborough County, FL",
-      "Pasco County, FL",
+      "Pinellas County, FL",
     ],
     knowsAbout: [
-      "Commercial Construction",
-      "Tenant Improvements",
-      "Structural Concrete",
-      "Hurricane Retrofits",
-      "Custom Luxury Homes",
+      "Mobile Welding",
+      "Structural Steel Welding",
+      "Custom Metal Fabrication",
+      "Plasma Cutting",
+      "Emergency Welding Repair",
     ],
   };
 

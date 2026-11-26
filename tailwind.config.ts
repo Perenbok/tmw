@@ -12,8 +12,8 @@ const config: Config = {
         concrete: "#DCDCDC",
         concreteDark: "#CFCFCF",
         carbon: "#141414",
-        acid: "#C4F000",
-        acidHover: "#d4ff14",
+        acid: "#FF6A00",
+        acidHover: "#FF8524",
       },
       fontFamily: {
         display: ["var(--font-anton)", "sans-serif"],

@@ -3,22 +3,10 @@
 import Link from "next/link";
 
 const SERVICES = [
-  {
-    title: "STRUCTURAL STEEL",
-    href: "/services/structural-steel",
-  },
-  {
-    title: "CUSTOM FABRICATION",
-    href: "/services/custom-fabrication",
-  },
-  {
-    title: "PLASMA CUTTING",
-    href: "/services/plasma-cutting",
-  },
-  {
-    title: "EMERGENCY 24/7",
-    href: "/services/emergency-24-7",
-  },
+  { title: "STRUCTURAL STEEL", href: "/services/structural-steel" },
+  { title: "CUSTOM FABRICATION", href: "/services/custom-fabrication" },
+  { title: "PLASMA CUTTING", href: "/services/plasma-cutting" },
+  { title: "EMERGENCY 24/7", href: "/services/emergency-24-7" },
 ];
 
 export default function ServicesGrid() {

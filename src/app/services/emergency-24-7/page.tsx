@@ -1,5 +1,5 @@
-import ServiceDetailView, { SERVICE_TREE } from "@/components/ServiceDetailView";
+import ServiceDetailView from "@/components/ServiceDetailView";
 
 export default function EmergencyServicePage() {
-  return <ServiceDetailView service={SERVICE_TREE[3]} />;
+  return <ServiceDetailView slug="emergency-24-7" />;
 }

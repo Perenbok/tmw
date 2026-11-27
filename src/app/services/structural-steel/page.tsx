@@ -1,5 +1,5 @@
-import ServiceDetailView, { SERVICE_TREE } from "@/components/ServiceDetailView";
+import ServiceDetailView from "@/components/ServiceDetailView";
 
 export default function StructuralSteelPage() {
-  return <ServiceDetailView service={SERVICE_TREE[0]} />;
+  return <ServiceDetailView slug="structural-steel" />;
 }

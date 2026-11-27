@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
@@ -166,11 +167,16 @@ export const SERVICE_TREE: ServiceTreeItem[] = [
 ];
 
 interface ServiceDetailViewProps {
-  service?: ServiceTreeItem;
+  slug?: string;
 }
 
-export default function ServiceDetailView({ service }: ServiceDetailViewProps) {
-  const currentService = service ?? SERVICE_TREE[0];
+export default function ServiceDetailView({ slug }: ServiceDetailViewProps) {
+  const pathname = usePathname();
+  const currentService =
+    SERVICE_TREE.find((item) => item.slug === slug) ||
+    SERVICE_TREE.find((item) => pathname.includes(item.slug)) ||
+    SERVICE_TREE[0];
+
   const [quoteOpen, setQuoteOpen] = useState(false);
   const [selectedService, setSelectedService] = useState(currentService.title);
   const [submitted, setSubmitted] = useState(false);

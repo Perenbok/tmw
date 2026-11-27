@@ -1,5 +1,5 @@
-import ServiceDetailView, { SERVICE_TREE } from "@/components/ServiceDetailView";
+import ServiceDetailView from "@/components/ServiceDetailView";
 
 export default function PlasmaCuttingPage() {
-  return <ServiceDetailView service={SERVICE_TREE[2]} />;
+  return <ServiceDetailView slug="plasma-cutting" />;
 }

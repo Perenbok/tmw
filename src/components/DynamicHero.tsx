@@ -150,7 +150,8 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
       className="relative w-full border-b border-carbon overflow-x-clip"
     >
       <div className="w-full max-w-[1600px] mx-auto grid grid-cols-1 lg:grid-cols-12 lg:min-h-[calc(100dvh-5rem)]">
-        <div className="lg:col-span-6 p-4 sm:p-8 xl:p-10 flex flex-col justify-between gap-6 border-b lg:border-b-0 lg:border-r border-carbon relative min-w-0">
+        {/* Описание и кнопки: на мобильных вторым (order-2), на десктопе слева (lg:order-1) */}
+        <div className="order-2 lg:order-1 lg:col-span-6 p-4 sm:p-8 xl:p-10 flex flex-col justify-between gap-6 lg:border-r border-carbon relative min-w-0">
           <div className="my-auto py-2 sm:py-4 relative min-w-0">
             <div className="inline-block font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.14em] sm:tracking-[0.18em] border border-carbon px-2.5 py-1 mb-3 bg-concrete">
               TAMPA MOBILE WELDING LLC • 20+ YEARS EXP
@@ -187,7 +188,8 @@ export default function DynamicHero({ onOpenQuote }: DynamicHeroProps) {
           </div>
         </div>
 
-        <div className="lg:col-span-6 relative w-full h-[380px] min-[420px]:h-[430px] sm:h-[520px] lg:h-auto lg:min-h-[calc(100dvh-5rem)] bg-carbon overflow-hidden select-none min-w-0">
+        {/* Видео: на мобильных первым под шапкой (order-1), на десктопе справа (lg:order-2) */}
+        <div className="order-1 lg:order-2 lg:col-span-6 relative w-full h-[380px] min-[420px]:h-[430px] sm:h-[520px] lg:h-auto lg:min-h-[calc(100dvh-5rem)] border-b lg:border-b-0 border-carbon bg-carbon overflow-hidden select-none min-w-0">
           {slide.video ? (
             <video
               ref={videoRef}

@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 
 const LOCATION_URL = "https://share.google/6ezev2ohbbukjVlex";
+const MAP_EMBED_URL =
+  "https://maps.google.com/maps?q=9430+Lazy+Lane,+Tampa,+FL+33614&t=&z=14&ie=UTF8&iwloc=&output=embed";
 
 export default function ContactPage() {
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -40,27 +42,43 @@ export default function ContactPage() {
           <div className="max-w-[1440px] mx-auto px-4 sm:px-8 py-14 grid grid-cols-1 lg:grid-cols-12 gap-8">
             <div className="lg:col-span-6 border border-carbon bg-white p-6 sm:p-8 shadow-[4px_4px_0px_#141414] flex flex-col justify-between">
               <div>
-                <div className="font-mono text-xs uppercase text-carbon/60 mb-2">
-                  LOCATION PIN & DISPATCH BASE
+                <div className="flex items-center justify-between gap-2 font-mono text-xs uppercase text-carbon/60 mb-2">
+                  <span>LOCATION PIN & DISPATCH BASE</span>
+                  <span className="text-carbon font-bold">27.9506° N, 82.4572° W</span>
                 </div>
-                <h2 className="font-display text-3xl sm:text-5xl uppercase mb-4">
+                <h2 className="font-display text-3xl sm:text-5xl uppercase mb-3">
                   TAMPA BAY LOCATION
                 </h2>
-                <p className="font-mono text-xs sm:text-sm uppercase text-carbon/85 leading-relaxed mb-6">
+                <p className="font-mono text-xs sm:text-sm uppercase text-carbon/85 leading-relaxed mb-5">
                   9430 LAZY LANE, TAMPA, FL 33614 • MOBILE RIG DISPATCH ACROSS HILLSBOROUGH, PINELLAS & PASCO COUNTIES.
                 </p>
 
-                <div className="border border-carbon bg-concrete p-4 font-mono text-xs mb-6 break-all">
-                  <div className="font-bold uppercase text-carbon/70 mb-1">GOOGLE LOCATION LINK</div>
-                  <a
-                    href={LOCATION_URL}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="underline font-bold hover:bg-acid px-1 py-0.5"
-                  >
-                    {LOCATION_URL}
-                  </a>
-                </div>
+                <a
+                  href={LOCATION_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="Open Tampa Mobile Welding location on Google Maps"
+                  className="group block relative w-full h-72 sm:h-80 border-2 border-carbon bg-carbon overflow-hidden mb-6 shadow-[4px_4px_0px_#141414]"
+                >
+                  <iframe
+                    src={MAP_EMBED_URL}
+                    title="Tampa Mobile Welding Location Map"
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-full border-0 grayscale contrast-125 opacity-90 group-hover:grayscale-0 group-hover:opacity-100 transition-all duration-300 pointer-events-none"
+                  />
+
+                  <div className="absolute inset-0 bg-gradient-to-t from-carbon/80 via-transparent to-carbon/20 pointer-events-none" />
+
+                  <div className="absolute top-3 left-3 bg-acid text-carbon border border-carbon px-2.5 py-1 font-mono text-[11px] font-bold uppercase tracking-wider">
+                    TAMPA MOBILE WELDING LLC
+                  </div>
+
+                  <div className="absolute bottom-3 left-3 right-3 flex items-center justify-between gap-2 bg-carbon/95 text-white border border-white/25 px-3.5 py-2.5 font-mono text-xs uppercase group-hover:border-acid transition-colors">
+                    <span className="truncate">9430 LAZY LANE, TAMPA, FL 33614</span>
+                    <span className="text-acid font-bold shrink-0">OPEN MAP ↗</span>
+                  </div>
+                </a>
               </div>
 
               <div className="flex flex-wrap gap-3">
@@ -188,7 +206,7 @@ export default function ContactPage() {
             <p className="font-mono text-xs uppercase mb-4">
               CALL <a href="tel:+18137557411" className="underline font-bold">(813) 755-7411</a> OR OPEN{" "}
               <a href={LOCATION_URL} target="_blank" rel="noopener noreferrer" className="underline font-bold">
-                LOCATION LINK
+                LOCATION MAP
               </a>.
             </p>
           </div>

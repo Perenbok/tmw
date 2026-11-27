@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ServicesTreeTabs, { SERVICE_TREE } from "@/components/ServicesTreeTabs";
+import { SERVICE_TREE } from "@/components/ServiceDetailView";
 
 export default function ServicesPage() {
   const [quoteOpen, setQuoteOpen] = useState(false);
@@ -20,7 +20,6 @@ export default function ServicesPage() {
   return (
     <div className="min-h-screen bg-concrete text-carbon selection:bg-acid selection:text-carbon flex flex-col">
       <Header onOpenQuote={handleOpenQuote} />
-      <ServicesTreeTabs />
 
       <main className="flex-1">
         <section className="border-b border-carbon bg-concrete">
@@ -32,7 +31,7 @@ export default function ServicesPage() {
               ALL WELDING SERVICES
             </h1>
             <p className="font-mono text-xs sm:text-sm uppercase text-carbon/85 max-w-2xl leading-relaxed">
-              SELECT A SERVICE TAB ABOVE OR OPEN ANY DEDICATED SERVICE PAGE BELOW FOR DETAILS AND DIRECT ESTIMATES.
+              FULL-SERVICE ON-SITE WELDING, STRUCTURAL STEEL, CUSTOM FABRICATION, PLASMA CUTTING UP TO 1 INCH, AND SAME-DAY EMERGENCY DISPATCH BY TAMPA MOBILE WELDING LLC.
             </p>
           </div>
         </section>

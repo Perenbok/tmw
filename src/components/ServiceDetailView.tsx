@@ -4,10 +4,80 @@ import { useState } from "react";
 import Link from "next/link";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ServicesTreeTabs, {
-  SERVICE_TREE,
-  ServiceTreeItem,
-} from "@/components/ServicesTreeTabs";
+
+export interface ServiceTreeItem {
+  code: string;
+  slug: string;
+  href: string;
+  tabLabel: string;
+  title: string;
+  subtitle: string;
+  desc: string;
+  items: string[];
+}
+
+export const SERVICE_TREE: ServiceTreeItem[] = [
+  {
+    code: "SRV-01",
+    slug: "structural-steel",
+    href: "/services/structural-steel",
+    tabLabel: "01 / STRUCTURAL STEEL",
+    title: "STRUCTURAL STEEL",
+    subtitle: "COMMERCIAL & INDUSTRIAL",
+    desc: "On-site structural steel welding, I-beam erection, load-bearing reinforcement, columns, and code-compliant AWS structural repairs across Tampa Bay.",
+    items: [
+      "I-Beam & Column Field Welding",
+      "Structural Reinforcement & Retrofits",
+      "Commercial Building Steel",
+      "Mobile Stick / MIG / Flux-Core",
+    ],
+  },
+  {
+    code: "SRV-02",
+    slug: "custom-fabrication",
+    href: "/services/custom-fabrication",
+    tabLabel: "02 / CUSTOM FABRICATION",
+    title: "CUSTOM FABRICATION",
+    subtitle: "GATES • RAILINGS • STAIRS",
+    desc: "Precision custom metal fabrication from blueprint to installation: driveway gates, architectural railings, steel staircases, frames, and trailers.",
+    items: [
+      "Heavy Driveway & Security Gates",
+      "Interior & Exterior Metal Railings",
+      "Steel Stairs, Platforms & Frames",
+      "Trailer & Equipment Fabrication",
+    ],
+  },
+  {
+    code: "SRV-03",
+    slug: "plasma-cutting",
+    href: "/services/plasma-cutting",
+    tabLabel: "03 / PLASMA CUTTING",
+    title: "PLASMA CUTTING",
+    subtitle: "UP TO 1 INCH THICKNESS",
+    desc: "High-precision mobile plasma cutting for heavy steel plates, structural modifications, brackets, and custom industrial cutouts up to 1\" thick.",
+    items: [
+      "Steel Plate Cutting Up to 1\"",
+      "On-Site Beam & Bracket Trimming",
+      "Clean Edge Prep for Welding",
+      "Rapid Mobile Rig Setup",
+    ],
+  },
+  {
+    code: "SRV-04",
+    slug: "emergency-24-7",
+    href: "/services/emergency-24-7",
+    tabLabel: "04 / EMERGENCY 24/7",
+    title: "EMERGENCY 24/7",
+    subtitle: "SAME-DAY DISPATCH",
+    desc: "Rapid mobile welding response for broken equipment, heavy machinery, cracked frames, gates, and urgent structural failures anywhere in Tampa.",
+    items: [
+      "Same-Day Tampa Bay Dispatch",
+      "Heavy Equipment & Machinery Repair",
+      "Broken Gate & Hinge Restoration",
+      "Self-Powered Generator Welding Rig",
+    ],
+  },
+];
 
 interface ServiceDetailViewProps {
   service?: ServiceTreeItem;
@@ -32,7 +102,6 @@ export default function ServiceDetailView({ service }: ServiceDetailViewProps) {
   return (
     <div className="min-h-screen bg-concrete text-carbon selection:bg-acid selection:text-carbon flex flex-col">
       <Header onOpenQuote={handleOpenQuote} />
-      <ServicesTreeTabs />
 
       <main className="flex-1">
         <section className="border-b border-carbon bg-concrete">
@@ -97,7 +166,7 @@ export default function ServiceDetailView({ service }: ServiceDetailViewProps) {
             <div className="lg:col-span-5 border border-carbon bg-carbon text-white p-6 sm:p-8 flex flex-col justify-between">
               <div>
                 <div className="font-mono text-xs uppercase text-acid font-bold mb-3">
-                  OTHER SERVICE BRANCHES
+                  OTHER SERVICES
                 </div>
                 <div className="space-y-2.5">
                   {otherServices.map((other) => (

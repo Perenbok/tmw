@@ -8,9 +8,16 @@ interface HeaderProps {
   onOpenQuote: (service?: string) => void;
 }
 
+const SERVICE_DROPDOWN = [
+  { label: "ALL SERVICES", href: "/services" },
+  { label: "01 / STRUCTURAL STEEL", href: "/services/structural-steel" },
+  { label: "02 / CUSTOM FABRICATION", href: "/services/custom-fabrication" },
+  { label: "03 / PLASMA CUTTING", href: "/services/plasma-cutting" },
+  { label: "04 / EMERGENCY 24/7", href: "/services/emergency-24-7" },
+];
+
 const NAV_ITEMS = [
   { label: "Home", href: "/" },
-  { label: "Services", href: "/services" },
   { label: "Our Work", href: "/our-work" },
   { label: "Reviews", href: "/reviews" },
   { label: "Contact", href: "/contact" },
@@ -19,10 +26,15 @@ const NAV_ITEMS = [
 export default function Header({ onOpenQuote }: HeaderProps) {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
 
   useEffect(() => {
     setMenuOpen(false);
+    setMobileServicesOpen(false);
   }, [pathname]);
+
+  const isHomeActive = pathname === "/";
+  const isServicesActive = pathname.startsWith("/services");
 
   return (
     <header className="sticky top-0 z-40 bg-concrete/95 backdrop-blur-sm border-b border-carbon">
@@ -44,7 +56,54 @@ export default function Header({ onOpenQuote }: HeaderProps) {
         </Link>
 
         <nav className="hidden lg:flex items-center gap-5 font-mono text-xs tracking-widest uppercase">
-          {NAV_ITEMS.map((item) => {
+          <Link
+            href="/"
+            className={`px-2.5 py-1 transition-colors border ${
+              isHomeActive
+                ? "bg-acid text-carbon border-carbon font-bold"
+                : "border-transparent hover:bg-acid hover:border-carbon"
+            }`}
+          >
+            Home
+          </Link>
+
+          <div className="relative group">
+            <Link
+              href="/services"
+              className={`px-2.5 py-1 transition-colors border flex items-center gap-1 ${
+                isServicesActive
+                  ? "bg-acid text-carbon border-carbon font-bold"
+                  : "border-transparent group-hover:bg-acid group-hover:border-carbon"
+              }`}
+            >
+              <span>Services</span>
+              <span className="text-[10px]">▾</span>
+            </Link>
+
+            <div className="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition-all duration-150 absolute left-0 top-full pt-2 w-64 z-50">
+              <div className="bg-concrete border-2 border-carbon shadow-[4px_4px_0px_#141414] divide-y divide-carbon/20">
+                {SERVICE_DROPDOWN.map((srv) => {
+                  const activeSrv = pathname === srv.href;
+                  return (
+                    <Link
+                      key={srv.href}
+                      href={srv.href}
+                      className={`block px-4 py-3 text-xs flex items-center justify-between transition-colors ${
+                        activeSrv
+                          ? "bg-acid text-carbon font-bold"
+                          : "text-carbon hover:bg-acid"
+                      }`}
+                    >
+                      <span>{srv.label}</span>
+                      <span>→</span>
+                    </Link>
+                  );
+                })}
+              </div>
+            </div>
+          </div>
+
+          {NAV_ITEMS.slice(1).map((item) => {
             const isActive = pathname === item.href;
             return (
               <Link
@@ -106,7 +165,54 @@ export default function Header({ onOpenQuote }: HeaderProps) {
       {menuOpen && (
         <div className="lg:hidden border-t border-carbon bg-concrete px-3 py-4 space-y-2 font-mono text-xs uppercase tracking-widest">
           <nav className="flex flex-col divide-y divide-carbon/15 border border-carbon bg-white/40">
-            {NAV_ITEMS.map((item) => {
+            <Link
+              href="/"
+              onClick={() => setMenuOpen(false)}
+              className={`px-4 py-3.5 flex items-center justify-between transition-colors ${
+                isHomeActive
+                  ? "bg-acid text-carbon font-bold"
+                  : "text-carbon hover:bg-acid"
+              }`}
+            >
+              <span>Home</span>
+              <span>→</span>
+            </Link>
+
+            <div>
+              <button
+                type="button"
+                onClick={() => setMobileServicesOpen((prev) => !prev)}
+                className={`w-full px-4 py-3.5 flex items-center justify-between transition-colors cursor-pointer ${
+                  isServicesActive
+                    ? "bg-acid text-carbon font-bold"
+                    : "text-carbon hover:bg-acid"
+                }`}
+              >
+                <span>Services</span>
+                <span>{mobileServicesOpen ? "▴" : "▾"}</span>
+              </button>
+              {mobileServicesOpen && (
+                <div className="bg-concrete border-t border-carbon/15 divide-y divide-carbon/10">
+                  {SERVICE_DROPDOWN.map((srv) => (
+                    <Link
+                      key={srv.href}
+                      href={srv.href}
+                      onClick={() => setMenuOpen(false)}
+                      className={`pl-8 pr-4 py-3 flex items-center justify-between text-[11px] ${
+                        pathname === srv.href
+                          ? "bg-acid/70 font-bold"
+                          : "hover:bg-acid/40"
+                      }`}
+                    >
+                      <span>{srv.label}</span>
+                      <span>→</span>
+                    </Link>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            {NAV_ITEMS.slice(1).map((item) => {
               const isActive = pathname === item.href;
               return (
                 <Link

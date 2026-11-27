@@ -1,5 +1,4 @@
-import ServiceDetailView from "@/components/ServiceDetailView";
-import { SERVICE_TREE } from "@/components/ServicesTreeTabs";
+import ServiceDetailView, { SERVICE_TREE } from "@/components/ServiceDetailView";
 
 export default function EmergencyServicePage() {
   return <ServiceDetailView service={SERVICE_TREE[3]} />;

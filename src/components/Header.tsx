@@ -9,6 +9,7 @@ interface HeaderProps {
 }
 
 const NAV_ITEMS = [
+  { label: "Home", href: "/" },
   { label: "Services", href: "/services" },
   { label: "Our Work", href: "/our-work" },
   { label: "Reviews", href: "/reviews" },
@@ -42,7 +43,7 @@ export default function Header({ onOpenQuote }: HeaderProps) {
           </div>
         </Link>
 
-        <nav className="hidden lg:flex items-center gap-6 font-mono text-xs tracking-widest uppercase">
+        <nav className="hidden lg:flex items-center gap-5 font-mono text-xs tracking-widest uppercase">
           {NAV_ITEMS.map((item) => {
             const isActive = pathname === item.href;
             return (
